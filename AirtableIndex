@@ -1,5 +1,11 @@
+
+require('dotenv')
+
+AIRTABLE_BASE_HASH=process.env.AIRTABLE_BASE_HASH
+AIRTABLE_API_KEY=process.env.AIRTABLE_API_KEY
+
 var Airtable = require('airtable');
-var base = new Airtable({apiKey: 'YOUR_API_KEY'}).base('appEX79rxfwysrNh6');
+var base = new Airtable({apiKey: 'AIRTABLE_API_KEY'}).base('AIRTABLE_BASE_HASH');
 
 base('{{noun.name}}').select({
     // Selecting the first 3 records in Grid view:
