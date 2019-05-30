@@ -7,14 +7,14 @@ AIRTABLE_API_KEY=process.env.AIRTABLE_API_KEY
 var Airtable = require('airtable');
 var base = new Airtable({apiKey: 'AIRTABLE_API_KEY'}).base('AIRTABLE_BASE_HASH');
 
-base('{{noun.name}}').select({
+base('{{name}}').select({
     // Selecting the first 3 records in Grid view:
     view: "Grid view"
 }).firstPage(function(err, records) {
     if (err) { console.error(err); return; }
     records.forEach(function(record) {
     // logic for record
-    {{noun.name}} = record
-      console.log('Retrieved', {{noun.name}}.get('Name'));
+    {{name}} = record
+      console.log('Retrieved', {{name}}.get('Name'));
     });
 });
