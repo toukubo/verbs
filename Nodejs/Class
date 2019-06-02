@@ -1,0 +1,15 @@
+
+class {{name}}{
+    constructor(name){
+        {{#attrs}}
+        this.{{attr.name}} = {{attr.name}}
+        {{/attrs}}
+      }
+    
+    function(){
+        verb_file_path = VERB_BASE + RESTBASE + "/" + this.name
+        template = fs.readFileSync(verb_file_path, 'utf-8');
+        return template
+    }
+
+}
