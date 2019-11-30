@@ -1,10 +1,5 @@
 
-class {{name}}Dao{
-    constructor(name){
-        {{#attrs}}
-        this.{{attr.name}} = {{attr.name}}
-        {{/attrs}}
-      }
+class {{name}}{{framework}}Dao{
     load(){
 
     }
