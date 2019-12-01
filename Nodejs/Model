@@ -1,0 +1,23 @@
+class {{name}}{
+    constructor(){
+        this.{{name}}Dao = require('../daos/{{name}}_dao.js')
+    }
+    create(params){
+        this.jsonObject = {}
+        {{#attrs}}
+        this.jsonObject.{{name}} = params.{{name}}
+        {{/attrs}}
+  	this.{{name}}.save(this.jsonObject)
+    }
+    update(id){
+       
+    }
+    delete(id){
+
+       
+    }
+    show(id){
+         this.jsonObject = this.{{name}}Dao.findById(id)
+         console.stdout.write(this.jsonObject)
+    }
+}
