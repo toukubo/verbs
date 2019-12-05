@@ -2,12 +2,15 @@ class {{name}}{
     constructor(){
         this.{{name}}Dao = require('../daos/{{name}}_dao.js')
     }
-    create(params){
+    create(req){
         this.jsonObject = {}
         {{#attrs}}
-        this.jsonObject.{{name}} = params.{{name}}
+        this.jsonObject.{{name}} = req.params.{{name}}
         {{/attrs}}
   	this.{{name}}.save(this.jsonObject)
+    }
+    load(){
+        
     }
     update(id){
        
