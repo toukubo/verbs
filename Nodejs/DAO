@@ -20,3 +20,4 @@ class {{name}}{{framework}}Dao{
     }
 
 }
+module.exports = new {{name}}Dao()

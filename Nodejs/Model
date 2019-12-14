@@ -1,0 +1,49 @@
+class {{name}} { this is a test 
+    constructor() {
+        this.{{name}}Dao = require('../daos/{{name}}_dao.js')
+    }
+
+    instantiate(json) {
+        var {{name}} = new {{name}}()
+
+        {{name}}.json = json
+
+        {{name}}.{{name}} = {{name}}.json.{{name}}
+        {{name}}.lower = {{name}}.json.{{name}}.toLowerCase()
+        {{name}}.{{lower}}sJson = {{name}}.json.{{lower}}s
+        {{name}}.{{lower}}s = []
+
+        const {{{{name}}}} = require('./{{lower}}.js')
+        // this is for mustach nested models. to reference to the {{name}} model {{lower}}ibutes
+        {{name}}.{{lower}}sJson.forEach({{lower}}Json => {
+            var {{lower}} = {{{{name}}}}.instantiate({{lower}}Json)
+            {{lower}}.set{{name}}({{name}})
+            {{name}}.{{lower}}s.push({{lower}})
+        });
+
+        return {{name}}
+
+    }
+    {{#attrs}}
+    findBy{{upper}}({{name}}) {
+        
+        var json = this.{{name}}Dao.findBy{{upper}}({{name}})
+        return this.instantiate(json)
+    }
+    {{/attrs}}
+
+    loadAll() {
+        this.{{name}}sJson = this.{{name}}Dao.loadAll()
+
+        var {{name}}s = []
+        var {{name}}Class = new {{name}}()
+
+        this.{{name}}sJson.forEach({{name}}Json => {
+            
+            let {{name}} = {{name}}Class.instantiate({{name}}Json)
+            {{name}}s.push({{name}})
+        });
+        return {{name}}s
+    }
+}
+module.exports = new {{name}}()
