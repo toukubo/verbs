@@ -1,29 +1,31 @@
 class {{name}} {
     constructor() {
-        this.{{name}}Dao = require('../daos/{{name}}_dao.js')
+        this.{{lower}}Dao = require('../daos/{{lower}}_dao.js')
     }
 
     instantiate(json) {
-        var {{name}} = new {{name}}()
+        var {{lower}} = new {{name}}()
 
-        {{name}}.json = json
+        {{lower}}.json = json
 
-        {{name}}.{{name}} = {{name}}.json.{{name}}
-        {{name}}.lower = {{name}}.json.{{name}}.toLowerCase()
-        {{name}}.{{lower}}sJson = {{name}}.json.{{lower}}s
-        {{name}}.{{lower}}s = []
+        {{#attrs}}
+        {{lower}}.{{name}} = {{lower}}.json.{{name}}
 
-        const {{{{name}}}} = require('./{{lower}}.js')
-        // this is for mustach nested models. to reference to the {{name}} model {{lower}}ibutes
-        {{name}}.{{lower}}sJson.forEach({{lower}}Json => {
-            var {{lower}} = {{{{name}}}}.instantiate({{lower}}Json)
-            {{lower}}.set{{name}}({{name}})
-            {{name}}.{{lower}}s.push({{lower}})
+        // this is for nested models. to reference to the {{name}} model {{lower}}ibutes
+        {{lower}}.{{name}}sJson = {{lower}}.json.{{name}}s
+        {{lower}}.{{name}}s = []
+        {{lower}}.{{name}}sJson.forEach({{name}}Json => {
+            const {{upper}} = require('./{{name}}.js')
+            var {{name}} = {{upper}}.instantiate({{name}}Json)
+            {{name}}.set{{noun_name}}({{name}})
+            {{lower}}.{{name}}s.push({{name}})
         });
-
-        return {{name}}
+        {{/attrs}}
+        return {{lower}}
 
     }
+
+
     {{#attrs}}
     findBy{{upper}}({{name}}) {
         
@@ -33,17 +35,17 @@ class {{name}} {
     {{/attrs}}
 
     loadAll() {
-        this.{{name}}sJson = this.{{name}}Dao.loadAll()
+        this.{{lower}}sJson = this.{{lower}}Dao.loadAll()
 
-        var {{name}}s = []
-        var {{name}}Class = new {{name}}()
+        var {{lower}}s = []
+        let {{lower}}Class = new {{name}}()
 
         this.{{name}}sJson.forEach({{name}}Json => {
             
-            let {{name}} = {{name}}Class.instantiate({{name}}Json)
-            {{name}}s.push({{name}})
+            let {{lower}} = {{lower}}Class.instantiate({{name}}Json)
+            {{lower}}s.push({{lower}})
         });
-        return {{name}}s
+        return {{lower}}s
     }
 }
 module.exports = new {{name}}()
